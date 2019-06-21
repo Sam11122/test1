@@ -1,16 +1,20 @@
-import React, { Component } from "react";
-class Navbar extends Component {
-  render() {
-    return (
-      <div>
-        <nav className="navbar navbar-light bg-light">
-          <span className="navbar-brand mb-0 h1">
-            Output= {this.props.output}
-          </span>
-        </nav>
-      </div>
-    );
-  }
-}
+import React from "react";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
 
-export default Navbar;
+const NavBar = props => {
+  return (
+    <div>
+      <AppBar position="static">
+        <Toolbar>
+          <Typography variant="title" color="inherit">
+            Output: {props.output}
+          </Typography>
+        </Toolbar>
+      </AppBar>
+    </div>
+  );
+};
+
+export default NavBar;

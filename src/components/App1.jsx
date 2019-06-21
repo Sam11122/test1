@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import Navbar from "./navbar";
+import TextFields from "./OutlinedText";
+import Buttons from "./Buttons";
 
 class App1 extends Component {
   constructor(props) {
@@ -15,16 +17,16 @@ class App1 extends Component {
     this.setState({ input: i });
   };
 
-  handleIncrement = () => {
+  handlePlusInput = () => {
     let i = Number(this.state.output + this.state.input);
     if (Number.isInteger(i)) {
       this.setState({ output: i });
     } else {
-      alert("Input is in  valid");
+      alert("Input is invalid");
     }
   };
 
-  handleDecrement = () => {
+  handleMinusInput = () => {
     let i = Number(this.state.output - this.state.input);
     if (Number.isInteger(i)) {
       this.setState({ output: i });
@@ -32,27 +34,32 @@ class App1 extends Component {
       alert("Input is not valid");
     }
   };
+
+  handlePlus1 = () => {
+    const i = this.state.output + 1;
+    this.setState({ output: i });
+  };
+
+  handleMinus1 = () => {
+    const i = this.state.output - 1;
+    this.setState({ output: i });
+  };
+
   render() {
     return (
       <div>
         <Navbar output={this.state.output} />
         <br />
-        <span className="badge badge-primary">Enter an integer: </span>
-        <input
-          type="text"
-          onChange={event => {
-            this.handleChange(event);
-          }}
-        />
 
         <br />
+        <TextFields onChange={this.handleChange} />
         <br />
-        <button className="btn btn-primary m-1" onClick={this.handleIncrement}>
-          Increment
-        </button>
-        <button className="btn btn-danger m-1" onClick={this.handleDecrement}>
-          Decrement
-        </button>
+        <Buttons
+          onPlus1={this.handlePlus1}
+          onMinus1={this.handleMinus1}
+          onPlusInput={this.handlePlusInput}
+          onMinusInput={this.handleMinusInput}
+        />
       </div>
     );
   }
